@@ -4,7 +4,7 @@ $(document).ready(function(){
 	//display buttons
 	// Function that displays all buttons of the array
 	function renderButtons(){
-		$("#animalButtons").empty();
+		// $("#animalButtons").empty();
 		//loop through the array to render buttons
 		//check movie-button-layout-solved.html
 		for (var i =0; i < animal.length; i++){
@@ -33,7 +33,6 @@ $(document).ready(function(){
 			console.log(animal);
 		});
 	};
-	renderButtons();
 	console.log(animal);
 	// Function that displays all of the gifs
 	function displayGifs(){
