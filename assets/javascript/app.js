@@ -36,34 +36,40 @@ $(document).ready(function(){
 	// console.log(animal);
 	// // Function that displays all of the gifs
 	// function displayGifs(){
-	var animalDisplay = $(this).attr("data-name");
-	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animalDisplay + "&api_key=5c85886a63464a1bbdca4e06adc0e445&limit=10";
-	console.log(queryURL);
-	$.ajax({
-    url: queryURL,
-    method: 'GET'
-	}).done(function(response) {
-    	console.log(response);
-    	console.log(queryURL);
-    	// storing the data from the AJAX request in the results variable
-    	var results = response.data;
-    	// Looping through each result item
-    	for (var i = 0; i < results.length; i++){
-    		// Creating and storing a div tag
-    		var animalDiv = $("<div>");
-    		// Creating a paragraph tag with the result item's rating
-    		var p = $("<p>").text("Rating: " + results[i].rating);
-    		// Creating and storing an image tag
-    		var animalImage = $("<img>");
-    		// Setting the src attribute of the image to a property pulled off the result item
-            animalImage.attr("src", results[i].images.fixed_height.url);
-            // Appending the paragraph and image tag to the animalDiv
-            animalDiv.append(p);
-            animalDiv.append(animalImage);
-            // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
-            $("#gifsView").prepend(animalDiv);
+	$(".btn").click(function(){
+		//just to check if the button is working
+		var a = $(this).attr("data-name");
+		console.log("the btn "+ a +"is working");
 
-    	};
-		});
-	// };
+
+		var animalDisplay = $(this).attr("data-name");
+		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animalDisplay + "&api_key=5c85886a63464a1bbdca4e06adc0e445&limit=10";
+		console.log(queryURL);
+		$.ajax({
+	    url: queryURL,
+	    method: 'GET'
+		}).done(function(response) {
+	    	// console.log(response);
+	    	// console.log(queryURL);
+	    	// storing the data from the AJAX request in the results variable
+	    	var results = response.data;
+	    	// Looping through each result item
+	    	for (var i = 0; i < results.length; i++){
+	    		// Creating and storing a div tag
+	    		var animalDiv = $("<div>");
+	    		// Creating a paragraph tag with the result item's rating
+	    		var p = $("<p>").text("Rating: " + results[i].rating);
+	    		// Creating and storing an image tag
+	    		var animalImage = $("<img>");
+	    		// Setting the src attribute of the image to a property pulled off the result item
+	            animalImage.attr("src", results[i].images.fixed_height.url);
+	            // Appending the paragraph and image tag to the animalDiv
+	            animalDiv.append(p);
+	            animalDiv.append(animalImage);
+	            // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
+	            $("#gifsView").prepend(animalDiv);
+
+	    	};
+			});
+	});
 });
